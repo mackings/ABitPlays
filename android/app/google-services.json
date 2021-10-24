@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "90229042990",
+    "project_id": "abitgames-acfcc",
+    "storage_bucket": "abitgames-acfcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90229042990:android:abd1334fdaec59c31694bf",
+        "android_client_info": {
+          "package_name": "app.abitplays"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90229042990-f5i32bvmnpkp21socajgnpdn4fdfa5o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlS77zcf0XT2OIJ-948GCPjGV5a1JpZk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90229042990-f5i32bvmnpkp21socajgnpdn4fdfa5o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "3"
+}

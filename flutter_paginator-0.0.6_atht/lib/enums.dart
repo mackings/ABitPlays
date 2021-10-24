@@ -1,0 +1,2 @@
+enum ListStatus { LOADING, ERROR, SUCCESS, EMPTY }
+enum ListType { LIST_VIEW, GRID_VIEW, GRID_VIEW2, PAGE_VIEW }
