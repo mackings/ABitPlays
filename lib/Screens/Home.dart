@@ -390,7 +390,7 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.all(6.0),
           child: Icon(MyFlutterApp.movies),
         ),
-        title: ("Library"),
+        title: ("Leaderboard"),
         textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
         iconSize: 20,
         activeColorPrimary: Color(0xffFFFFFF),

@@ -56,8 +56,20 @@ class _GamesViewState extends State<GamesView> {
         ),
         elevation: 0.0,
       ),
-      body: Padding(
+      body: Container(
         padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+            ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+            fit: BoxFit.fitWidth,
+          ),
+        ),
         child: ListView(
           children: <Widget>[
             SizedBox(height: 10.0),
@@ -103,7 +115,7 @@ class _GamesViewState extends State<GamesView> {
                           ? Theme(
                               data: ThemeData(
                                   cupertinoOverrideTheme: CupertinoThemeData(
-                                      brightness: Brightness.light)),
+                                      brightness: Brightness.dark)),
                               child: CupertinoActivityIndicator(
                                 animating: true,
                               ),
@@ -127,7 +139,10 @@ class _GamesViewState extends State<GamesView> {
                 Expanded(
                     child: Text(
                   widget.game["title"],
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 )),
@@ -151,9 +166,9 @@ class _GamesViewState extends State<GamesView> {
             Text(
               "About",
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white),
               maxLines: 2,
             ),
             SizedBox(height: 5.0),
@@ -161,9 +176,9 @@ class _GamesViewState extends State<GamesView> {
             Text(
               parsedString,
               style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w300,
-              ),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white),
               maxLines: 1,
             ),
 
@@ -172,9 +187,9 @@ class _GamesViewState extends State<GamesView> {
             Text(
               "Game Description",
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white),
               maxLines: 2,
             ),
 
@@ -183,9 +198,9 @@ class _GamesViewState extends State<GamesView> {
             Text(
               parsedString,
               style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w300,
-              ),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white),
             ),
 
             SizedBox(height: 20.0),
@@ -193,9 +208,9 @@ class _GamesViewState extends State<GamesView> {
             Text(
               "Other Information",
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white),
               maxLines: 2,
             ),
             SizedBox(height: 10.0),

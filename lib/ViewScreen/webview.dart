@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+
 class WebView extends StatefulWidget {
   final String title;
   String url;
@@ -9,7 +10,7 @@ class WebView extends StatefulWidget {
   WebView({
     @required this.title,
     @required this.url,
-    });
+  });
   @override
   _WebViewState createState() => _WebViewState();
 }
@@ -77,48 +78,48 @@ class _WebViewState extends State<WebView> {
 
     _onProgressChanged =
         flutterWebViewPlugin.onProgressChanged.listen((double progress) {
-          if (mounted) {
-            setState(() {
-              _history.add('onProgressChanged: $progress');
-            });
-          }
+      if (mounted) {
+        setState(() {
+          _history.add('onProgressChanged: $progress');
         });
+      }
+    });
 
     _onScrollYChanged =
         flutterWebViewPlugin.onScrollYChanged.listen((double y) {
-          if (mounted) {
-            setState(() {
-              _history.add('Scroll in Y Direction: $y');
-            });
-          }
+      if (mounted) {
+        setState(() {
+          _history.add('Scroll in Y Direction: $y');
         });
+      }
+    });
 
     _onScrollXChanged =
         flutterWebViewPlugin.onScrollXChanged.listen((double x) {
-          if (mounted) {
-            setState(() {
-              _history.add('Scroll in X Direction: $x');
-            });
-          }
+      if (mounted) {
+        setState(() {
+          _history.add('Scroll in X Direction: $x');
         });
+      }
+    });
 
     _onStateChanged =
         flutterWebViewPlugin.onStateChanged.listen((WebViewStateChanged state) {
-          if (mounted) {
-            setState(() {
-              _history.add('onStateChanged: ${state.type} ${state.url}');
-            });
-          }
+      if (mounted) {
+        setState(() {
+          _history.add('onStateChanged: ${state.type} ${state.url}');
         });
+      }
+    });
 
     _onHttpError =
         flutterWebViewPlugin.onHttpError.listen((WebViewHttpError error) {
-          if (mounted) {
-            setState(() {
-              _history.add('onHttpError: ${error.code} ${error.url}');
-            });
-          }
+      if (mounted) {
+        setState(() {
+          _history.add('onHttpError: ${error.code} ${error.url}');
         });
+      }
+    });
   }
 
   @override
@@ -137,48 +138,61 @@ class _WebViewState extends State<WebView> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: widget.url,
-      javascriptChannels: jsChannels,
-      mediaPlaybackRequiresUserGesture: false,
-      appBar: AppBar(
-        title: Text(widget.title),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+          ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+          fit: BoxFit.fitWidth,
+        ),
       ),
-      withZoom: true,
-      withLocalStorage: true,
-      hidden: true,
+      child: WebviewScaffold(
+        url: widget.url,
+        javascriptChannels: jsChannels,
+        mediaPlaybackRequiresUserGesture: false,
+        appBar: AppBar(
+          backgroundColor: Color(0xff031D39),
+          title: Text(widget.title),
+        ),
+        withZoom: true,
+        withLocalStorage: true,
+        hidden: true,
 //      initialChild: Container(
 //        color: Colors.redAccent,
 //        child: const Center(
 //          child: Text('Waiting.....'),
 //        ),
 //      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                flutterWebViewPlugin.goBack();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: () {
-                flutterWebViewPlugin.goForward();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.autorenew),
-              onPressed: () {
-                flutterWebViewPlugin.reload();
-              },
-            ),
-
-          ],
+        bottomNavigationBar: BottomAppBar(
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  flutterWebViewPlugin.goBack();
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward_ios),
+                onPressed: () {
+                  flutterWebViewPlugin.goForward();
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.autorenew),
+                onPressed: () {
+                  flutterWebViewPlugin.reload();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

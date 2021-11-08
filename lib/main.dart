@@ -388,7 +388,7 @@ class _MyAppState extends State<MyApp> {
           title: Constants.appName,
           key: appProvider.key,
           navigatorKey: appProvider.navigatorKey,
-//          debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: false,
           theme: appProvider.theme,
           darkTheme: Constants.darkTheme,
           // theme: ThemeData(

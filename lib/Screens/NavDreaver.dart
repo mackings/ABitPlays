@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:abitplay/OnBoarding/Login_Reg.dart';
+import 'package:abitplay/Screens/Achievements.dart';
 import 'package:abitplay/Screens/Profile.dart';
+import 'package:abitplay/Screens/Settings.dart';
+import 'package:abitplay/ViewScreen/webview.dart';
 import 'package:abitplay/network_utils/api.dart';
 import 'package:abitplay/providers/app_provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -12,8 +15,6 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../webview.dart';
 
 class NavDrawer extends StatefulWidget {
   // final Function function;
@@ -171,33 +172,34 @@ class _NavDrawerState extends State<NavDrawer> {
                                   ],
                                 ),
 
-                                Text(
-                                  'Welcome',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 3.0),
-                                        child: Text(
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 3.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Game Id: ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
                                           Provider.of<AppProvider>(context)
-                                              .data['name']
+                                              .data['id']
                                               .toString(),
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w600),
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
 
                                 // Text((_email != null)? _email : 'abituser.com' , style: TextStyle( fontSize: 10),),
@@ -383,7 +385,46 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
               ),
             ),
-
+            ListTile(
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => Achievements())),
+              leading: Icon(
+                Icons.security,
+                color: Colors.white,
+              ),
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Achievement',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                pushNewScreen(
+                  context,
+                  screen: Settings(),
+                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              },
+              leading: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              title: Text(
+                'Settings',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
             ListTile(
               onTap: () {
                 Share.share(
