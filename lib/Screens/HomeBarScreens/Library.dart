@@ -52,7 +52,7 @@ class _LibraryState extends State<Library> {
                 child: SearchBox(
                   isLoading: false,
                   focusNode: null,
-                  hintText: 'Search Favourites',
+                  hintText: 'Search Games',
                   textEditingController: null,
                   function: () {
                     search();
@@ -464,7 +464,7 @@ class _LibraryState extends State<Library> {
       context: context,
       delegate: SearchPage(
         barTheme: Theme.of(context).copyWith(
-          primaryColor: Colors.red,
+          primaryColor: Colors.white,
           textTheme: Theme.of(context).textTheme.copyWith(
                 headline6: TextStyle(
                   color: Colors.white,
@@ -488,11 +488,59 @@ class _LibraryState extends State<Library> {
         ),
         items: lists,
         searchLabel: 'Search Games',
-        suggestion: Center(
-          child: Text('Filter Games'),
+        suggestion: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+              ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Filter Games',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
-        failure: Center(
-          child: Text('No matching Game :('),
+        failure: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+              ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+                ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                'No matching Game :(',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
         ),
         filter: (person) => [
           person.toString(),
@@ -514,8 +562,20 @@ class _LibraryState extends State<Library> {
             );
           },
           // child: Text(person["game"].toString()),
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(4.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+                ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
             child: ListTile(
               leading: CircleAvatar(
                   backgroundColor: Theme.of(context).accentColor,
@@ -526,7 +586,10 @@ class _LibraryState extends State<Library> {
                   )),
               title: Text(
                 person["game"]['title'].toString(),
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

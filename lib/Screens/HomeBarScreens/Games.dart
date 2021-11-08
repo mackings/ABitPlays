@@ -75,37 +75,38 @@ class _GamesState extends State<Games> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: SearchBox(
-                    isLoading: false,
-                    focusNode: null,
-                    hintText: 'Search ABiTPlay',
-                    textEditingController: null,
-                    function: () {
-                      search();
-                    },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: SearchBox(
+                      isLoading: false,
+                      focusNode: null,
+                      hintText: 'Search ABiTPlay',
+                      textEditingController: null,
+                      function: () {
+                        search();
+                      },
+                    ),
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "FEATURED",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "FEATURED",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-                future(),
+                  future(),
 
 //           CarouselSlider.builder(
 //             options: CarouselOptions(
@@ -247,179 +248,160 @@ class _GamesState extends State<Games> {
 //             },
 //           ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "POPULAR",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "POPULAR",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                _pageNator(),
-
-//                 GridView.builder(
-//
-//                   shrinkWrap: true,
-//                   primary: false,
-//                   physics: NeverScrollableScrollPhysics(),
-//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                     crossAxisCount: 2,
-//                     childAspectRatio: MediaQuery.of(context).size.width /
-//                         (MediaQuery.of(context).size.height / 1.8),
-//                   ),
-//                   itemCount: values == null ? 0 : values.length,
-//                   itemBuilder: (BuildContext context, int index) {
-//                     Map cat = values[index];
-//                     return GestureDetector(
-//                       onTap: ()
-//                       {
-//                         pushNewScreen(
-//                           context,
-//                           screen: GamesView(game: cat),
-//                           withNavBar: false, // OPTIONAL VALUE. True by default.
-//                           pageTransitionAnimation: PageTransitionAnimation.cupertino,
-//                         );
-//                       },
-//                       child: Card(
-//                         color: Colors.black,
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(18),
-//                         ),
-//                         child: Stack(
-//
-//                           children: [
-//
-//                             ClipRRect(
-//                               borderRadius: BorderRadius.circular(18),
-//                               child: Container(
-//                                 decoration: BoxDecoration(
-//                                   borderRadius: BorderRadius.circular(18.0),
-//                                 ),
-//                                 width: MediaQuery.of(context).size.width,
-//                                 height: MediaQuery.of(context).size.height,
-//                                 child: CachedNetworkImage(
-//                                   fit: BoxFit.cover,
-//                                   imageUrl: cat['img'].toString(),
-//                                   placeholder: (context, url) => Image.asset(
-//                                     'assets/images/loading.gif',
-//                                     fit: BoxFit.cover,
-//                                   ),
-//                                   errorWidget: (context, url, error) => Image.asset(
-//                                     'assets/images/loading.gif',
-//                                     fit: BoxFit.cover,
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                             Card(
-//                               color: Colors.black.withOpacity(0.2),
-//                               margin: EdgeInsets.all(0.0),
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(18),
-//                               ),
-//                               child: Container(),
-//                             ),
-//
-//                             Card(
-//                               margin: EdgeInsets.all(0.0),
-//                               color: Theme.of(context).accentColor.withOpacity(0.1),
-//                               // color: Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.3),
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(18),
-//                               ),
-//                               elevation: 1,
-//                               child: Stack(
-//                                 children: <Widget>[
-//                                   // Positioned(
-//                                   //     top: 30,
-//                                   //     right: 10,
-//                                   //
-//                                   //     child: Icon(MyFlutterApp.award, size: 35,color: Colors.white.withOpacity(0.5),)),
-//
-//                                   Container(
-// //                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height / 4.2, ),
-//                                     height: 180,
-//                                     width: MediaQuery.of(context).size.width,
-//                                   ),
-//                                   Column(
-//                                     mainAxisAlignment: MainAxisAlignment.end,
-//                                     crossAxisAlignment: CrossAxisAlignment.start,
-//                                     children: [
-//
-//                                       Padding(
-//                                         padding: const EdgeInsets.all(0.0),
-//                                         child: ListTile(
-// //                        trailing: Text('${lists[i]['award_price'].toString()}'),
-//                                           title: Text(cat['title'].toString().toUpperCase(),
-//                                             maxLines: 1,
-//                                             style: TextStyle(
-//                                                 color: Colors.white,
-//                                                 fontWeight: FontWeight.w800,
-//                                                 fontSize: 13
-//                                             ),
-//                                             overflow: TextOverflow.ellipsis,),
-//                                           subtitle: Row(
-//                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                             crossAxisAlignment: CrossAxisAlignment.center,
-//                                             children: [
-//                                               Text("Action",
-//                                                 style: TextStyle(
-//                                                   color: Colors.white,
-//                                                   fontWeight: FontWeight.w400,
-//                                                   fontSize: 10
-//                                                 ),),
-//                                           SmoothStarRating(
-//                                               starCount: 5,
-//                                               color: Colors.orange,
-//                                               allowHalfRating: true,
-//                                               rating: 5.0,
-//                                               size: 8.0,
-//                                             ),
-//                                             ],
-//                                           ),
-//                                           // trailing:SmoothStarRating(
-//                                           //   starCount: 5,
-//                                           //   color: Colors.orange,
-//                                           //   allowHalfRating: true,
-//                                           //   rating: 5.0,
-//                                           //   size: 8.0,
-//                                           // ),
-//
-//                                         ),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//
-//                           ],
-//                         ),
-//                       ),
-//                     );
-//                     //   function:
-//                     // );
-//                   },
-//                 ),
-
-//                  Padding(
-//                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-//                    child: Row(
-//                      children: [
-//                        Text(
-//                          "CATEGORIES",
-//                          style: TextStyle(fontWeight: FontWeight.w600),
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-              ],
+                  _pageNator(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "RECOMMENDED FOR YOU",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    primary: false,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: values == null ? 0 : values.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Map cat = values[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            pushNewScreen(
+                              context,
+                              screen: GamesView(
+                                game: cat,
+                                isFav: false,
+                              ),
+                              withNavBar:
+                                  false, // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(18),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
+                                      ),
+                                      width:
+                                          MediaQuery.of(context).size.width / 4,
+                                      height:
+                                          MediaQuery.of(context).size.width / 4,
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: cat['img'].toString(),
+                                        placeholder: (context, url) =>
+                                            Image.asset(
+                                          'assets/images/loading.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(
+                                          'assets/images/loading.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              cat['title']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 20),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Text(
+                                              "Action",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 16),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  pushNewScreen(
+                                    context,
+                                    screen: GamesView(
+                                      game: cat,
+                                      isFav: false,
+                                    ),
+                                    withNavBar:
+                                        false, // OPTIONAL VALUE. True by default.
+                                    pageTransitionAnimation:
+                                        PageTransitionAnimation.cupertino,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
+                                  size: 40,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -482,7 +464,10 @@ class _GamesState extends State<Games> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('Please check your internet connection'),
+                    child: Text(
+                      'Please check your internet connection',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   FlatButton(
                     onPressed: () {
@@ -492,7 +477,10 @@ class _GamesState extends State<Games> {
                           pageLoadFuture: sendCountriesDataRequest,
                           resetState: true);
                     },
-                    child: Text('Retry'),
+                    child: Text(
+                      'Retry',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               );
@@ -712,18 +700,18 @@ class _GamesState extends State<Games> {
 
   Widget listItemBuilder(value, int index) {
     return GestureDetector(
-      onTap: () {
-        print(value["images"].runtimeType);
-        pushNewScreen(
-          context,
-          screen: GamesView(
-            game: value,
-            isFav: false,
-          ),
-          withNavBar: false, // OPTIONAL VALUE. True by default.
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
-      },
+//      onTap: () {
+//        print(value["images"].runtimeType);
+//        pushNewScreen(
+//          context,
+//          screen: GamesView(
+//            game: value,
+//            isFav: false,
+//          ),
+//          withNavBar: false, // OPTIONAL VALUE. True by default.
+//          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+//        );
+//      },
       child: Card(
         color: Colors.white,
         shape: RoundedRectangleBorder(
@@ -838,11 +826,12 @@ class _GamesState extends State<Games> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Text(countriesData.errorMessage),
+          child: Text(countriesData.errorMessage,
+              style: TextStyle(color: Colors.white)),
         ),
         FlatButton(
           onPressed: retryListener,
-          child: Text('Retry'),
+          child: Text('Retry', style: TextStyle(color: Colors.white)),
         )
       ],
     );
@@ -875,7 +864,7 @@ class _GamesState extends State<Games> {
       context: context,
       delegate: SearchPage(
         barTheme: Theme.of(context).copyWith(
-          primaryColor: Colors.red,
+          primaryColor: Colors.white,
           textTheme: Theme.of(context).textTheme.copyWith(
                 headline6: TextStyle(
                   color: Colors.white,
@@ -899,11 +888,45 @@ class _GamesState extends State<Games> {
         ),
         items: lists,
         searchLabel: 'Search Games',
-        suggestion: Center(
-          child: Text('Filter Games'),
+        suggestion: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+              ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Filter Games',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
-        failure: Center(
-          child: Text('No matching Game :('),
+        failure: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+              ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'No matching Game :(',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
         filter: (person) => [
           person['title'].toString(),
@@ -916,53 +939,90 @@ class _GamesState extends State<Games> {
             print(person['title'].toString());
             pushNewScreen(
               context,
-              screen: GamesView(
-                game: person,
-                isFav: false,
+              screen: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+                    ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                child: GamesView(
+                  game: person,
+                  isFav: false,
+                ),
               ),
               withNavBar: false, // OPTIONAL VALUE. True by default.
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: ListTile(
-              leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).accentColor,
-                  child: Icon(
-                    Icons.games,
-                    color: Colors.white,
-                    size: 20,
-                  )),
-              title: Text(
-                person['title'].toString(),
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/bg.jpg',
+//             width: 220.0,
+//             height: 120,
+                      ),
+//            colorFilter: ColorFilter.mode(
+//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                          backgroundColor: Theme.of(context).accentColor,
+                          child: Icon(
+                            Icons.games,
+                            color: Colors.white,
+                            size: 20,
+                          )),
+                      title: Text(
+                        person['title'].toString(),
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
 //              subtitle: Text(
 //                ((person['post_type'] != null)
 //                    ? person['post_type'].toString()
 //                    : 'Scholarship'),
 //                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
 //              ),
-              trailing: Container(
-                height: 40,
-                width: 40,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4.0),
-                  child: CachedNetworkImage(
-                    placeholder: (context, url) => Image.asset(
-                      'assets/images/loading.gif',
-                      fit: BoxFit.cover,
-                    ),
-                    imageUrl: person['image'],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+                      trailing: Container(
+                        height: 40,
+                        width: 40,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4.0),
+                          child: CachedNetworkImage(
+                            placeholder: (context, url) => Image.asset(
+                              'assets/images/loading.gif',
+                              fit: BoxFit.cover,
+                            ),
+                            imageUrl: person['image'],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
 //            subtitle: Text(person.surname),
 //            trailing: Text('${person.age} yrs'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

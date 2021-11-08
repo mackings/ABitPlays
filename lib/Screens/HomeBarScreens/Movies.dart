@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:abitplay/ViewScreen/videoScreen.dart';
+import 'package:abitplay/ViewScreen/webview.dart';
 import 'package:abitplay/ViewScreen/youtubeVideo.dart';
 import 'package:abitplay/services/firebase_analytics.dart';
-import 'package:abitplay/utils/CustomWidgets.dart';
-import 'package:abitplay/utils/smooth_star_rating.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -86,65 +85,65 @@ class _MoviesState extends State<Movies> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff031D39),
-
-        title: Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: SearchBox(
-            isLoading: false,
-            focusNode: null,
-            hintText: 'Search Leaderboard',
-            textEditingController: null,
-            function: () {
-              search();
-            },
-          ),
-        ),
-        // toolbarHeight: 50,
-        elevation: 0.0,
-        bottom: TabBar(
-          isScrollable: true,
-          controller: _tabController,
-          indicatorColor: Colors.white,
-          labelColor: Colors.white,
-          // unselectedLabelColor: Colors.white,
-          labelStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontWeight: FontWeight.w800,
-          ),
-          unselectedLabelStyle: TextStyle(
-            fontSize: 12.0,
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
-          ),
-          tabs: <Widget>[
-            Tab(
-              // icon: Icon(Icons.whatshot),
-              text: "Trending",
-            ),
-            Tab(
-              text: "Action",
-            ),
-            Tab(
-              text: "Adventure",
-            ),
-            Tab(
-              text: "African",
-            ),
-            Tab(
-              text: "HollyWood",
-            ),
-            Tab(
-              text: "NollyWood",
-            ),
-            Tab(
-              text: "Comedy",
-            ),
-          ],
-        ),
-      ),
+//      appBar: AppBar(
+//        backgroundColor: Color(0xff031D39),
+//
+//        title: Padding(
+//          padding: const EdgeInsets.all(0.0),
+//          child: SearchBox(
+//            isLoading: false,
+//            focusNode: null,
+//            hintText: 'Search Leaderboard',
+//            textEditingController: null,
+//            function: () {
+//              search();
+//            },
+//          ),
+//        ),
+//        // toolbarHeight: 50,
+//        elevation: 0.0,
+//        bottom: TabBar(
+//          isScrollable: true,
+//          controller: _tabController,
+//          indicatorColor: Colors.white,
+//          labelColor: Colors.white,
+//          // unselectedLabelColor: Colors.white,
+//          labelStyle: TextStyle(
+//            color: Colors.white,
+//            fontSize: 12,
+//            fontWeight: FontWeight.w800,
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontSize: 12.0,
+//            color: Colors.white,
+//            fontWeight: FontWeight.w400,
+//          ),
+//          tabs: <Widget>[
+//            Tab(
+//              // icon: Icon(Icons.whatshot),
+//              text: "Trending",
+//            ),
+//            Tab(
+//              text: "Action",
+//            ),
+//            Tab(
+//              text: "Adventure",
+//            ),
+//            Tab(
+//              text: "African",
+//            ),
+//            Tab(
+//              text: "HollyWood",
+//            ),
+//            Tab(
+//              text: "NollyWood",
+//            ),
+//            Tab(
+//              text: "Comedy",
+//            ),
+//          ],
+//        ),
+//      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         decoration: BoxDecoration(
@@ -159,215 +158,258 @@ class _MoviesState extends State<Movies> with SingleTickerProviderStateMixin {
             fit: BoxFit.fitWidth,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 5,
-                ),
-
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical:16.0),
-                //   child: Row(
-                //     children: [
-                //       // Text("Top Picks", style: TextStyle(fontWeight: FontWeight.w600),),
-                //     ],
-                //   ),
-                // ),
-                GridView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        (MediaQuery.of(context).size.height / 1.8),
+        child: Center(
+          child: Container(
+            height: 100,
+            color: Color(0xff041B9D),
+            margin:
+                const EdgeInsets.symmetric(horizontal: 50.0, vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 50.0, vertical: 16.0),
+            child: Center(
+              child: GestureDetector(
+                onTap: () => pushNewScreen(
+                  context,
+                  screen: WebView(
+                    title: "Leaderboard",
+                    url: "https://abitplay.io/tournaments",
                   ),
-                  itemCount: values == null ? 0 : values.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Map cat = values[index];
-                    String videolink = cat['url'].toString();
-                    return GestureDetector(
-                      onTap: () async {
-                        print(videolink);
-                        if (videolink.toString().contains('youtu', 0)) {
-                          String videoId;
-                          videoId = await YoutubePlayer.convertUrlToId(
-                              videolink.toString());
-                          print(videoId);
-                          print('youtube video');
-                          pushNewScreen(
-                            context,
-                            screen: YoutubeVideo(
-                              url: videoId ?? '',
-                              title: cat['title'].toString() ?? '',
-                              body: cat['desc'].toString() ?? '',
-                            ),
-                            withNavBar:
-                                false, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
-                        } else {
-                          pushNewScreen(
-                            context,
-                            screen: ZoomVideo(
-                              url: videolink.toString() ?? '',
-                              title: cat['title'].toString() ?? '',
-                              body: cat['desc'].toString() ?? '',
-                              // position: _controller.value.position,
-                            ),
-                            withNavBar:
-                                false, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
-                        }
-                      },
-                      child: Card(
-                        color: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                ),
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  imageUrl: cat['img'].toString(),
-                                  placeholder: (context, url) => Image.asset(
-                                    'assets/images/loading.gif',
-                                    fit: BoxFit.cover,
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset(
-                                    'assets/images/loading.gif',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Card(
-                              color: Colors.black.withOpacity(0.2),
-                              margin: EdgeInsets.all(0.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Container(),
-                            ),
-                            Card(
-                              margin: EdgeInsets.all(0.0),
-                              color: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.1),
-                              // color: Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.3),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              elevation: 1,
-                              child: Stack(
-                                children: <Widget>[
-                                  // Positioned(
-                                  //     top: 30,
-                                  //     right: 10,
-                                  //
-                                  //     child: Icon(MyFlutterApp.award, size: 35,color: Colors.white.withOpacity(0.5),)),
-
-                                  Container(
-//                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height / 4.2, ),
-                                    height: 180,
-                                    width: MediaQuery.of(context).size.width,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(0.0),
-                                        child: ListTile(
-//                        trailing: Text('${lists[i]['award_price'].toString()}'),
-                                          title: Text(
-                                            cat['title']
-                                                .toString()
-                                                .toUpperCase(),
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: 13),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          subtitle: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                cat['artist'].toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 10),
-                                              ),
-                                              SmoothStarRating(
-                                                starCount: 5,
-                                                color: Colors.orange,
-                                                allowHalfRating: true,
-                                                rating: 5.0,
-                                                size: 8.0,
-                                              ),
-                                            ],
-                                          ),
-                                          // trailing:SmoothStarRating(
-                                          //   starCount: 5,
-                                          //   color: Colors.orange,
-                                          //   allowHalfRating: true,
-                                          //   rating: 5.0,
-                                          //   size: 8.0,
-                                          // ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Positioned(
-                                      top: 1,
-                                      left: 1,
-                                      right: 1,
-                                      bottom: 1,
-                                      child: Icon(
-                                        Icons.play_circle_outline,
-                                        color: Colors.white,
-                                        size: 50,
-                                      ))
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                    ;
-                    //   function:
-                    // );
-                  },
+                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 ),
-              ],
+                child: Text(
+                  "View Leaderboard",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ),
         ),
       ),
+//      WebView(title: "", url: "https://abitplay.io/tournaments"),
+
+//      Container(
+//        decoration: BoxDecoration(
+//          image: DecorationImage(
+//            image: AssetImage(
+//              'assets/images/bg.jpg',
+////             width: 220.0,
+////             height: 120,
+//            ),
+////            colorFilter: ColorFilter.mode(
+////                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+//            fit: BoxFit.fitWidth,
+//          ),
+//        ),
+//        child: Padding(
+//          padding: const EdgeInsets.all(8.0),
+//          child: SingleChildScrollView(
+//            child: Column(
+//              children: [
+//                SizedBox(
+//                  height: 5,
+//                ),
+//
+//                // Padding(
+//                //   padding: const EdgeInsets.symmetric(vertical:16.0),
+//                //   child: Row(
+//                //     children: [
+//                //       // Text("Top Picks", style: TextStyle(fontWeight: FontWeight.w600),),
+//                //     ],
+//                //   ),
+//                // ),
+//                GridView.builder(
+//                  scrollDirection: Axis.vertical,
+//                  shrinkWrap: true,
+//                  primary: false,
+//                  physics: NeverScrollableScrollPhysics(),
+//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                    crossAxisCount: 2,
+//                    childAspectRatio: MediaQuery.of(context).size.width /
+//                        (MediaQuery.of(context).size.height / 1.8),
+//                  ),
+//                  itemCount: values == null ? 0 : values.length,
+//                  itemBuilder: (BuildContext context, int index) {
+//                    Map cat = values[index];
+//                    String videolink = cat['url'].toString();
+//                    return GestureDetector(
+//                      onTap: () async {
+//                        print(videolink);
+//                        if (videolink.toString().contains('youtu', 0)) {
+//                          String videoId;
+//                          videoId = await YoutubePlayer.convertUrlToId(
+//                              videolink.toString());
+//                          print(videoId);
+//                          print('youtube video');
+//                          pushNewScreen(
+//                            context,
+//                            screen: YoutubeVideo(
+//                              url: videoId ?? '',
+//                              title: cat['title'].toString() ?? '',
+//                              body: cat['desc'].toString() ?? '',
+//                            ),
+//                            withNavBar:
+//                                false, // OPTIONAL VALUE. True by default.
+//                            pageTransitionAnimation:
+//                                PageTransitionAnimation.cupertino,
+//                          );
+//                        } else {
+//                          pushNewScreen(
+//                            context,
+//                            screen: ZoomVideo(
+//                              url: videolink.toString() ?? '',
+//                              title: cat['title'].toString() ?? '',
+//                              body: cat['desc'].toString() ?? '',
+//                              // position: _controller.value.position,
+//                            ),
+//                            withNavBar:
+//                                false, // OPTIONAL VALUE. True by default.
+//                            pageTransitionAnimation:
+//                                PageTransitionAnimation.cupertino,
+//                          );
+//                        }
+//                      },
+//                      child: Card(
+//                        color: Colors.black,
+//                        shape: RoundedRectangleBorder(
+//                          borderRadius: BorderRadius.circular(18),
+//                        ),
+//                        child: Stack(
+//                          children: [
+//                            ClipRRect(
+//                              borderRadius: BorderRadius.circular(18),
+//                              child: Container(
+//                                decoration: BoxDecoration(
+//                                  borderRadius: BorderRadius.circular(18.0),
+//                                ),
+//                                width: MediaQuery.of(context).size.width,
+//                                height: MediaQuery.of(context).size.height,
+//                                child: CachedNetworkImage(
+//                                  fit: BoxFit.cover,
+//                                  imageUrl: cat['img'].toString(),
+//                                  placeholder: (context, url) => Image.asset(
+//                                    'assets/images/loading.gif',
+//                                    fit: BoxFit.cover,
+//                                  ),
+//                                  errorWidget: (context, url, error) =>
+//                                      Image.asset(
+//                                    'assets/images/loading.gif',
+//                                    fit: BoxFit.cover,
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                            Card(
+//                              color: Colors.black.withOpacity(0.2),
+//                              margin: EdgeInsets.all(0.0),
+//                              shape: RoundedRectangleBorder(
+//                                borderRadius: BorderRadius.circular(18),
+//                              ),
+//                              child: Container(),
+//                            ),
+//                            Card(
+//                              margin: EdgeInsets.all(0.0),
+//                              color: Theme.of(context)
+//                                  .accentColor
+//                                  .withOpacity(0.1),
+//                              // color: Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.3),
+//                              shape: RoundedRectangleBorder(
+//                                borderRadius: BorderRadius.circular(18),
+//                              ),
+//                              elevation: 1,
+//                              child: Stack(
+//                                children: <Widget>[
+//                                  // Positioned(
+//                                  //     top: 30,
+//                                  //     right: 10,
+//                                  //
+//                                  //     child: Icon(MyFlutterApp.award, size: 35,color: Colors.white.withOpacity(0.5),)),
+//
+//                                  Container(
+////                  constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height / 4.2, ),
+//                                    height: 180,
+//                                    width: MediaQuery.of(context).size.width,
+//                                  ),
+//                                  Column(
+//                                    mainAxisAlignment: MainAxisAlignment.end,
+//                                    crossAxisAlignment:
+//                                        CrossAxisAlignment.start,
+//                                    children: [
+//                                      Padding(
+//                                        padding: const EdgeInsets.all(0.0),
+//                                        child: ListTile(
+////                        trailing: Text('${lists[i]['award_price'].toString()}'),
+//                                          title: Text(
+//                                            cat['title']
+//                                                .toString()
+//                                                .toUpperCase(),
+//                                            maxLines: 1,
+//                                            style: TextStyle(
+//                                                color: Colors.white,
+//                                                fontWeight: FontWeight.w800,
+//                                                fontSize: 13),
+//                                            overflow: TextOverflow.ellipsis,
+//                                          ),
+//                                          subtitle: Row(
+//                                            mainAxisAlignment:
+//                                                MainAxisAlignment.spaceBetween,
+//                                            crossAxisAlignment:
+//                                                CrossAxisAlignment.center,
+//                                            children: [
+//                                              Text(
+//                                                cat['artist'].toString(),
+//                                                style: TextStyle(
+//                                                    color: Colors.white,
+//                                                    fontWeight: FontWeight.w400,
+//                                                    fontSize: 10),
+//                                              ),
+//                                              SmoothStarRating(
+//                                                starCount: 5,
+//                                                color: Colors.orange,
+//                                                allowHalfRating: true,
+//                                                rating: 5.0,
+//                                                size: 8.0,
+//                                              ),
+//                                            ],
+//                                          ),
+//                                          // trailing:SmoothStarRating(
+//                                          //   starCount: 5,
+//                                          //   color: Colors.orange,
+//                                          //   allowHalfRating: true,
+//                                          //   rating: 5.0,
+//                                          //   size: 8.0,
+//                                          // ),
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                  Positioned(
+//                                      top: 1,
+//                                      left: 1,
+//                                      right: 1,
+//                                      bottom: 1,
+//                                      child: Icon(
+//                                        Icons.play_circle_outline,
+//                                        color: Colors.white,
+//                                        size: 50,
+//                                      ))
+//                                ],
+//                              ),
+//                            ),
+//                          ],
+//                        ),
+//                      ),
+//                    );
+//                    ;
+//                    //   function:
+//                    // );
+//                  },
+//                ),
+//              ],
+//            ),
+//          ),
+//        ),
+//      ),
     );
   }
 

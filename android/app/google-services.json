@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:90229042990:android:abd1334fdaec59c31694bf",
         "android_client_info": {
-          "package_name": "app.abitplays"
+          "package_name": "app.abitplay"
         }
       },
       "oauth_client": [
@@ -35,5 +35,5 @@
       }
     }
   ],
-  "configuration_version": "3"
+  "configuration_version": "1"
 }

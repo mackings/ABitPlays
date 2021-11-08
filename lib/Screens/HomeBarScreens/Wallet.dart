@@ -159,7 +159,9 @@ class _WalletState extends State<Wallet> {
                                           Padding(
                                             padding: const EdgeInsets.all(16.0),
                                             child: Text(
-                                                'Please check your internet connection'),
+                                                'Please check your internet connection',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
                                           ),
                                           FlatButton(
                                             onPressed: () {
@@ -171,7 +173,9 @@ class _WalletState extends State<Wallet> {
                                               // paginatorGlobalKey.currentState.changeState(
                                               //     pageLoadFuture: sendCountriesDataRequest, resetState: true);
                                             },
-                                            child: Text('Retry'),
+                                            child: Text('Retry',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
                                           )
                                         ],
                                       );
@@ -287,10 +291,23 @@ class _WalletState extends State<Wallet> {
       leading: CircleAvatar(child: Icon(Icons.attach_money)),
       title: Text(
         value["purpose"],
-        style: TextStyle(fontWeight: FontWeight.w600),
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
       ),
-      trailing: Text(value["amount"].toString().split(".")[0] + " TAT"),
-      subtitle: Text(formattedDat.format(DateTime.parse(value["updated_at"]))),
+      trailing: Text(
+        value["amount"].toString().split(".")[0] + " TAT",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      subtitle: Text(
+        formattedDat.format(DateTime.parse(value["updated_at"])),
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
       // subtitle:  Text(value["updated_at"]),
     );
   }
@@ -309,11 +326,12 @@ class _WalletState extends State<Wallet> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Text(countriesData.errorMessage),
+          child: Text(countriesData.errorMessage,
+              style: TextStyle(color: Colors.white)),
         ),
         FlatButton(
           onPressed: retryListener,
-          child: Text('Retry'),
+          child: Text('Retry', style: TextStyle(color: Colors.white)),
         )
       ],
     );
@@ -321,8 +339,10 @@ class _WalletState extends State<Wallet> {
 
   Widget emptyListWidgetMaker(CountriesData countriesData) {
     return Center(
-      child: Text("No Activities yet",style: TextStyle(
-color:Colors.white      ),),
+      child: Text(
+        "No Activities yet",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 

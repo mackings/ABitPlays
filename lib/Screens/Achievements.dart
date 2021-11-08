@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Achievements extends StatefulWidget {
   @override
   _AchievementsState createState() => _AchievementsState();
@@ -15,9 +16,7 @@ class _AchievementsState extends State<Achievements> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(child: Text("No Records Yet"))
-          ],
+          children: [Center(child: Text("No Activity yet"))],
         ),
       ),
     );
