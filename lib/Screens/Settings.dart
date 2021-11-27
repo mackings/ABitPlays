@@ -173,7 +173,7 @@ class _SettingsState extends State<Settings> {
                     children: [
                       GestureDetector(
                         child: Text(
-                          "Abit Games",
+                          "ABiTPlay",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onTap: () => pushNewScreen(
@@ -198,7 +198,7 @@ class _SettingsState extends State<Settings> {
                       SizedBox(
                         height: 8,
                       ),
-                      Text("About AbitPlay",
+                      Text("About ABiTPlay",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
