@@ -12,7 +12,7 @@ class Constant extends ChangeNotifier{
     static String baseUrl = "https://api.abitplay.io/api/v1";
     static String regUrl = "https://abitnetwork.com/auth/register";
 
-    ///from authDoxc
+    ///from authDoxcs
     static String  BASE_URL = "https://api.abitnetwork.com";
     static String AUTH_URL = "https://auth.abitnetwork.com/api/v1/auth";
     static String BALANCE_URL = "https://balance.abitnetwork.com";
