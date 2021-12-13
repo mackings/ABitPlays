@@ -103,316 +103,318 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Color(0xff031D39),
         elevation: 0.0,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/images/bg.jpg',
-//             width: 220.0,
-//             height: 120,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg.jpg',
+      //             width: 220.0,
+      //             height: 120,
+              ),
+      //            colorFilter: ColorFilter.mode(
+      //                Colors.black.withOpacity(0.8), BlendMode.srcOver),
+              fit: BoxFit.fitWidth,
             ),
-//            colorFilter: ColorFilter.mode(
-//                Colors.black.withOpacity(0.8), BlendMode.srcOver),
-            fit: BoxFit.fitWidth,
           ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            // color: Colors.red,
-                            height: 90,
-                            width: 90,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(75.0),
-                              child: Image(
-                                image: AssetImage(
-                                  "assets/images/avatar.jpeg",
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              // color: Colors.red,
+                              height: 90,
+                              width: 90,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(75.0),
+                                child: Image(
+                                  image: AssetImage(
+                                    "assets/images/avatar.jpeg",
+                                  ),
+                                  fit: BoxFit.cover,
                                 ),
-                                fit: BoxFit.cover,
+      //                              CachedNetworkImage(
+      //                                fit: BoxFit.cover,
+      //                                imageUrl: Provider.of<AppProvider>(context)
+      //                                    .data['pictureUrl']
+      //                                    .toString(),
+      //                                placeholder: (context, url) => Image(
+      //                                  image: AssetImage(
+      //                                    "assets/images/avatar.jpeg",
+      //                                  ),
+      //                                  fit: BoxFit.cover,
+      //                                ),
+      //                                // errorWidget: (context, url, error) => Image(image: AssetImage("assets/images/avatar2.png",)),
+      //                              ),
+      
+                                // Center(child: Image(image: AssetImage("assets/images/avatar2.png",))),
                               ),
-//                              CachedNetworkImage(
-//                                fit: BoxFit.cover,
-//                                imageUrl: Provider.of<AppProvider>(context)
-//                                    .data['pictureUrl']
-//                                    .toString(),
-//                                placeholder: (context, url) => Image(
-//                                  image: AssetImage(
-//                                    "assets/images/avatar.jpeg",
-//                                  ),
-//                                  fit: BoxFit.cover,
-//                                ),
-//                                // errorWidget: (context, url, error) => Image(image: AssetImage("assets/images/avatar2.png",)),
-//                              ),
-
-                              // Center(child: Image(image: AssetImage("assets/images/avatar2.png",))),
                             ),
+                            // SizedBox(height: 6,),
+                            // Text('Game ID: ' , style: TextStyle( fontSize: 10),),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        // Row(
+                        //   children: [
+                        //     Flexible(
+                        //       child: Column(
+                        //         mainAxisAlignment: MainAxisAlignment.start,
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           Text('Welcome', style: TextStyle(fontWeight: FontWeight.w400),),
+                        //
+                        //           Padding(
+                        //             padding: const EdgeInsets.symmetric(vertical:3.0),
+                        //             child: Row(
+                        //               children: [
+                        //                 Flexible(child: Text(Provider.of<AppProvider>(context).data['name'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //
+                        //           // Text((_email != null)? _email : 'abituser.com' , style: TextStyle( fontSize: 10),),
+                        //           SizedBox(height: 3,),
+                        //           Text('TAT Bal : 700',  style: TextStyle(color: Colors.green, fontSize: 10, fontWeight: FontWeight.w800),),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).hintColor.withOpacity(0.15),
+                        offset: Offset(0, 3),
+                        blurRadius: 10)
+                  ],
+                ),
+                child: ListView(
+                  padding: EdgeInsets.only(bottom: 10, top: 10),
+                  shrinkWrap: true,
+                  primary: false,
+                  children: <Widget>[
+                    ListTile(
+                      dense: false,
+                      leading: Icon(Icons.person),
+                      title: Text(
+                        "Account Information",
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      trailing: InkWell(
+                          onTap: () {
+                            _showDialog();
+                          },
+                          child: Icon(Icons.edit)),
+      // this place for data update
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      dense: true,
+                      title: Text(
+                        "Full Name",
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      trailing: Text(
+                        Provider.of<AppProvider>(context).data['name'].toString(),
+                        style: TextStyle(),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      dense: true,
+                      title: Text(
+                        "email",
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      trailing: Text(
+                        Provider.of<AppProvider>(context)
+                            .data['email']
+                            .toString(),
+                        style: TextStyle(color: Colors.grey),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      dense: true,
+                      title: Text(
+                        "Mobile number",
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      trailing: Text(
+                        Provider.of<AppProvider>(context)
+                                    .data["phone"]
+                                    .toString() !=
+                                null.toString()
+                            ? Provider.of<AppProvider>(context)
+                                .data["phone"]
+                                .toString()
+                            : "",
+                        style: TextStyle(color: Colors.grey),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    // ListTile(
+                    //   onTap: () {},
+                    //   dense: true,
+                    //   title: Text(
+                    //     "Verification",
+                    //     style: Theme.of(context).textTheme.bodyText2,
+                    //   ),
+                    //   // trailing: Text(
+                    //   //   ((_verified != null) ? _verified? "Verified":"Not Verified"  : '' ) ,
+                    //   //   style: TextStyle(color: Colors.grey),
+                    //   //   maxLines: 1,
+                    //   //   overflow: TextOverflow.ellipsis,
+                    //   // ),
+                    //
+                    // ),
+                  ],
+                ),
+              ),
+      //
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).hintColor.withOpacity(0.15),
+                        offset: Offset(0, 3),
+                        blurRadius: 10)
+                  ],
+                ),
+                child: ListView(
+                  padding: EdgeInsets.only(bottom: 10, top: 10),
+                  shrinkWrap: true,
+                  primary: false,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.settings),
+                      title: Text(
+                        "App setting",
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+      //                                        trailing: IconButton(
+      //                                          icon: Icon(Icons.edit_attributes),
+      //                                          onPressed: (){},
+      //                                        )
+                    ),
+                    ListTile(
+      //                                      onTap: () {
+      //                                        Navigator.of(context).pushNamed('/Languages');
+      //                                      },
+                      dense: true,
+                      title: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.translate,
+                            size: 22,
+                            color: Colors.grey,
                           ),
-                          // SizedBox(height: 6,),
-                          // Text('Game ID: ' , style: TextStyle( fontSize: 10),),
+                          SizedBox(width: 10),
+                          Text(
+                            "languages",
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
                         ],
                       ),
-                      SizedBox(
-                        width: 20,
+                      trailing: Text(
+                        "english",
+                        style: TextStyle(color: Colors.grey),
                       ),
-                      // Row(
-                      //   children: [
-                      //     Flexible(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           Text('Welcome', style: TextStyle(fontWeight: FontWeight.w400),),
-                      //
-                      //           Padding(
-                      //             padding: const EdgeInsets.symmetric(vertical:3.0),
-                      //             child: Row(
-                      //               children: [
-                      //                 Flexible(child: Text(Provider.of<AppProvider>(context).data['name'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),maxLines: 1, overflow: TextOverflow.ellipsis,)),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //
-                      //           // Text((_email != null)? _email : 'abituser.com' , style: TextStyle( fontSize: 10),),
-                      //           SizedBox(height: 3,),
-                      //           Text('TAT Bal : 700',  style: TextStyle(color: Colors.green, fontSize: 10, fontWeight: FontWeight.w800),),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                ],
+                    ),
+                    ListTile(
+                      dense: true,
+                      trailing: Text(
+                        Provider.of<AppProvider>(context)
+                            .data['nationality']
+                            .toString(),
+                        style: TextStyle(color: Colors.grey),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      title: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.place,
+                            size: 22,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "Country",
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        pushNewScreen(
+                          context,
+                          screen: WebView(
+                            title: "Help and Feedback",
+                            url: "https://abitplay.io/support",
+                          ),
+                          withNavBar: false, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        );
+                        // Navigator.push(context, MaterialPageRoute(builder: (context){
+                        //   return Contact();
+                        // }));
+                      },
+                      dense: true,
+                      title: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.help,
+                            size: 22,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "FAQ & Support",
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context).hintColor.withOpacity(0.15),
-                      offset: Offset(0, 3),
-                      blurRadius: 10)
-                ],
-              ),
-              child: ListView(
-                padding: EdgeInsets.only(bottom: 10, top: 10),
-                shrinkWrap: true,
-                primary: false,
-                children: <Widget>[
-                  ListTile(
-                    dense: false,
-                    leading: Icon(Icons.person),
-                    title: Text(
-                      "Account Information",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    trailing: InkWell(
-                        onTap: () {
-                          _showDialog();
-                        },
-                        child: Icon(Icons.edit)),
-// this place for data update
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    dense: true,
-                    title: Text(
-                      "Full Name",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    trailing: Text(
-                      Provider.of<AppProvider>(context).data['name'].toString(),
-                      style: TextStyle(),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    dense: true,
-                    title: Text(
-                      "email",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    trailing: Text(
-                      Provider.of<AppProvider>(context)
-                          .data['email']
-                          .toString(),
-                      style: TextStyle(color: Colors.grey),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    dense: true,
-                    title: Text(
-                      "Mobile number",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    trailing: Text(
-                      Provider.of<AppProvider>(context)
-                                  .data["phone"]
-                                  .toString() !=
-                              null.toString()
-                          ? Provider.of<AppProvider>(context)
-                              .data["phone"]
-                              .toString()
-                          : "",
-                      style: TextStyle(color: Colors.grey),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  // ListTile(
-                  //   onTap: () {},
-                  //   dense: true,
-                  //   title: Text(
-                  //     "Verification",
-                  //     style: Theme.of(context).textTheme.bodyText2,
-                  //   ),
-                  //   // trailing: Text(
-                  //   //   ((_verified != null) ? _verified? "Verified":"Not Verified"  : '' ) ,
-                  //   //   style: TextStyle(color: Colors.grey),
-                  //   //   maxLines: 1,
-                  //   //   overflow: TextOverflow.ellipsis,
-                  //   // ),
-                  //
-                  // ),
-                ],
-              ),
-            ),
-//
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context).hintColor.withOpacity(0.15),
-                      offset: Offset(0, 3),
-                      blurRadius: 10)
-                ],
-              ),
-              child: ListView(
-                padding: EdgeInsets.only(bottom: 10, top: 10),
-                shrinkWrap: true,
-                primary: false,
-                children: <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text(
-                      "App setting",
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-//                                        trailing: IconButton(
-//                                          icon: Icon(Icons.edit_attributes),
-//                                          onPressed: (){},
-//                                        )
-                  ),
-                  ListTile(
-//                                      onTap: () {
-//                                        Navigator.of(context).pushNamed('/Languages');
-//                                      },
-                    dense: true,
-                    title: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.translate,
-                          size: 22,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "languages",
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                      ],
-                    ),
-                    trailing: Text(
-                      "english",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  ListTile(
-                    dense: true,
-                    trailing: Text(
-                      Provider.of<AppProvider>(context)
-                          .data['nationality']
-                          .toString(),
-                      style: TextStyle(color: Colors.grey),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    title: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.place,
-                          size: 22,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "Country",
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                      ],
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      pushNewScreen(
-                        context,
-                        screen: WebView(
-                          title: "Help and Feedback",
-                          url: "https://abitplay.io/support",
-                        ),
-                        withNavBar: false, // OPTIONAL VALUE. True by default.
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                      );
-                      // Navigator.push(context, MaterialPageRoute(builder: (context){
-                      //   return Contact();
-                      // }));
-                    },
-                    dense: true,
-                    title: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.help,
-                          size: 22,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "FAQ & Support",
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
