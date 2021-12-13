@@ -94,7 +94,7 @@ class _NavDrawerState extends State<NavDrawer> {
       child: Container(
         color: Color(0xff031D39),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             DrawerHeader(
                 margin: const EdgeInsets.only(bottom: 0.0),

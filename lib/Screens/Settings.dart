@@ -190,19 +190,48 @@ class _SettingsState extends State<Settings> {
                       SizedBox(
                         height: 8,
                       ),
-                      Text("Help and Feedback",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      GestureDetector(
+                        child: Text("Help and Feedback",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600)),
+
+                                 onTap: () => pushNewScreen(
+                          context,
+                          screen: WebView(
+                            title: "Help and Feedback",
+                            url: "https://abitplay.io/support ",
+                          ),
+                          withNavBar: false, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        ),
+                      ),
                       SizedBox(
                         height: 8,
                       ),
-                      Text("About ABiTPlay",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      GestureDetector(
+                      
+                        child: Text("About ABiTPlay",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600)),
+
+                                    onTap: () => pushNewScreen(
+                          context,
+                          screen: WebView(
+                            title: "About ABiTPlay",
+                            url: "https://abitplay.io/about",
+                          ),
+                          withNavBar: false, // OPTIONAL VALUE. True by default.
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        ),
+
+
+                      ),
                     ],
                   ),
                 ],
