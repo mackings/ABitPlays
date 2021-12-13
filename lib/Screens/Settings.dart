@@ -2,6 +2,7 @@ import 'package:abitplay/ViewScreen/webview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class Settings extends StatefulWidget {
@@ -100,8 +101,8 @@ class _SettingsState extends State<Settings> {
                         "Profile",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      _sub("Sign into Games Automatically"),
-                      _sub("Show Game ID on launch"),
+                      //_sub("Sign into Games Automatically"),
+                      // _sub("Show Game ID on launch"),
                       _sub("Recieve In game Invites"),
                     ],
                   ),
@@ -133,19 +134,24 @@ class _SettingsState extends State<Settings> {
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       _sub("Share Game Data with App"),
-                      Text("Clean All Game Data",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      // Text("Clean All Game Data",
+                      // style: TextStyle(
+                      //   color: Colors.white,
+                      //  fontSize: 18,
+                      // fontWeight: FontWeight.w600)),
                       SizedBox(
                         height: 8,
                       ),
-                      Text("Clean App Cache",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      // GestureDetector(
+                      // onTap: (){
+                      //  Fluttertoast.showToast(msg: '')
+                      //},
+                      //child: Text("Clean App Cache",
+                      //   style: TextStyle(
+                      //     color: Colors.white,
+                      //      fontSize: 18,
+                      //      fontWeight: FontWeight.w600)),
+                      // ),
                     ],
                   ),
                 ],
@@ -190,19 +196,33 @@ class _SettingsState extends State<Settings> {
                       SizedBox(
                         height: 8,
                       ),
-                      Text("Help and Feedback",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      GestureDetector(
+                        onTap: (){
+                          WebView(
+                              title: 'About ABitPlay',
+                              url: 'https://abitplay.io/support ');
+                        },
+                        child: Text("Help and Feedback",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600)),
+                      ),
                       SizedBox(
                         height: 8,
                       ),
-                      Text("About ABiTPlay",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      GestureDetector(
+                        onTap: () {
+                          WebView(
+                              title: 'About ABitPlay',
+                              url: 'https://abitplay.io/about');
+                        },
+                        child: Text("About ABiTPlay",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600)),
+                      ),
                     ],
                   ),
                 ],

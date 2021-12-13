@@ -97,8 +97,8 @@ class _NavDrawerState extends State<NavDrawer> {
           mainAxisSize: MainAxisSize.max,
           children: [
             DrawerHeader(
-                margin: const EdgeInsets.only(bottom: 0.0),
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              // margin: const EdgeInsets.only(bottom: 0.0),
+                //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 decoration: BoxDecoration(
                   color: Color(0xff031D39),
 //                  image: DecorationImage(
@@ -129,7 +129,8 @@ class _NavDrawerState extends State<NavDrawer> {
                                           context,
                                           screen: Profile(),
                                           withNavBar:
-                                              false, // OPTIONAL VALUE. True by default.
+                                         
+                                            false, // OPTIONAL VALUE. True by default.
                                           pageTransitionAnimation:
                                               PageTransitionAnimation.cupertino,
                                         );
